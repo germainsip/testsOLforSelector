@@ -11,8 +11,7 @@
     </style>
     <style>
       html,
-      body,
-      #map-container {
+      body {
         font-family: sans-serif;
         background-color: #ffffff;
       }
@@ -25,10 +24,11 @@
         width: 400px;
         height: 400px;
         border-radius: 4px;
-        background-color: rgb(223, 227, 232);
-        box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
+        border: solid rgb(36, 77, 200);
+        background-color: rgb(234, 238, 242);
+        /* box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
         -webkit-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
-        -moz-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
+        -moz-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset; */
       }
       #info {
         position: absolute;
@@ -55,10 +55,11 @@
         margin-left: 10px;
         width: 400px;
         height: 400px;
+        border: solid rgb(36, 77, 200);
         border-radius: 4px;
-        box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
+        /* box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
         -webkit-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
-        -moz-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
+        -moz-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset; */
         background-color: rgb(255, 255, 255);
       }
     </style>
@@ -73,10 +74,11 @@
         </td>
         <td>
           <div id="tableau">
-            <label for="region">Région</label>
+            <label for="region"></label>
             <select name="region" id="region">
               <option value="1">Région</option>
             </select>
+            <div id="choix"></div>
           </div>
         </td>
       </tr>
