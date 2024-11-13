@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./v10.2.1-package/dist/ol.js"></script>
+  <style>
+    @import "v10.2.1-package/ol.css";
+  </style>
+  <style>
+    html, body, #map-container {
+      
+      
+      font-family: sans-serif;
+      background-color: #ffffff;
+    }
+
+    #map-container {
+      position: relative;
+      margin-top: 30px;
+      margin-left: 30px;
+      width: 400px;
+      height: 400px;
+     
+      background-color: rgb(235, 244, 255);
+    }
+    #info {
+        position: absolute;
+        display: inline-block;
+        height: auto;
+        width: auto;
+        z-index: 100;
+        background-color: #fff;
+        color: #333;
+        text-align: center;
+        border-radius: 4px;
+        padding: 5px;
+        left: 50%;
+        transform: translateX(3%);
+        visibility: hidden;
+        pointer-events: none;
+      }
+    #tableau {
+      margin-top: 30px;
+      margin-left: 10px;
+      width: 400px;
+      height: 400px;
+      
+      background-color: rgb(230, 241, 255);
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr><td>
+      <div id="map-container">
+        <div id="info"></div>
+      </div>
+    </td>
+  <td>
+    <div id="tableau" >texte</div>
+  </td>
+  </tr>
+  </table>
+ 
+  <script src="main.js" type="module"></script>
+</body>
+</html>
