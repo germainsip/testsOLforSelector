@@ -66,7 +66,7 @@ let map = new ol.Map({
   ],
   view: new ol.View({
     center: ol.proj.fromLonLat([2.0,47.0]),
-    zoom: 5,
+    zoom: 5.3,
   })
 })
 
@@ -169,3 +169,18 @@ map.getTargetElement().addEventListener('pointerleave', function () {
   currentFeature = undefined;
   info.style.visibility = 'hidden';
 });
+
+const loadRegionSelector = () => {
+  const regSel = $('#region')
+  fetch('./geojson/fr_regions.geojson')
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json)
+      json.features.forEach((el) => {
+        console.log(el.properties.nom)
+      regSel.append(`<option>${el.properties.nom}</option>`)
+
+      }) 
+    });
+}
+loadRegionSelector()

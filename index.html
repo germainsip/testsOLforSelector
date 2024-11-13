@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="./v10.2.1-package/dist/ol.js"></script>
+    <script src="jquery-3.7.1.min.js"></script>
     <style>
       @import "v10.2.1-package/ol.css";
     </style>
@@ -18,11 +19,12 @@
 
       #map-container {
         position: relative;
+        padding: 5px;
         margin-top: 30px;
         margin-left: 30px;
         width: 400px;
         height: 400px;
-
+        border-radius: 4px;
         background-color: rgb(223, 227, 232);
         box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
         -webkit-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
@@ -48,12 +50,16 @@
         pointer-events: none;
       }
       #tableau {
+        padding: 5px;
         margin-top: 30px;
         margin-left: 10px;
         width: 400px;
         height: 400px;
-
-        background-color: rgb(230, 241, 255);
+        border-radius: 4px;
+        box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
+        -webkit-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
+        -moz-box-shadow: 10px 3px 10px 1px rgba(0, 0, 0, 0.2) inset;
+        background-color: rgb(255, 255, 255);
       }
     </style>
   </head>
@@ -69,7 +75,7 @@
           <div id="tableau">
             <label for="region">Région</label>
             <select name="region" id="region">
-              <option value="1">hdf</option>
+              <option value="1">Région</option>
             </select>
           </div>
         </td>
