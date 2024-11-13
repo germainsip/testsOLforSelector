@@ -41,20 +41,7 @@ const roadMapConfig = [
   { gestionn: "DIRAC", pathId: "dir-routes-concedees", label: "Routes concédées", color: "#ddd" }
 ]
 
-// const colors = {
-//   "DIRA": "#4c90b4",
-//   "DIRCE":"#e4cc94" },
-//   "DIRCO", pathId: "dir-centre-ouest", label: "DIR Centre-Ouest", color: "#cd943b" },
-//   "DIRE", pathId: "dir-est", label: "DIR Est", color: "#008e8b" },
-//   "DIRIF", pathId: "dir-ile-de-france", label: "DIR Ile-De-France", color: "#a2589e" },
-//   "DIRMC", pathId: "dir-massif-central", label: "DIR Massif Central", color: "#006b2b" },
-//   "DIRMED", pathId: "dir-mediterranee", label: "DIR Méditerranée", color: "#20baae"},
-//   "DIRN", pathId: "dir-nord", label: "DIR Nord", color: "#f6a712" },
-//   "DIRNO", pathId: "dir-nord-ouest", label: "DIR Nord-Ouest", color: "#008e11" },
-//   "DIRO", pathId: "dir-ouest", label: "DIR Ouest", color: "#c7b500" },
-//   "DIRSO", pathId: "dir-sud-ouest", label: "DIR Sud-Ouest", color: "#c50636" },
-//   "DIRSOGT2", pathId: "dir-sud-ouest-saint-paul-de-jarrat", label: "DIR Sud-Ouest | St-Paul-de-Jarrat", color: "#c50636" },
-// }
+
 
 let map = new ol.Map({
   target: 'map-container',
@@ -69,8 +56,8 @@ let map = new ol.Map({
         color: 'white'
       }),
       stroke: new ol.style.Stroke({
-        color: '#E4E0E1',
-        width: 0.7,
+        color: [0,0,139,0.3],
+        width: 0.8,
         lineCap: 'round'
       })
     })
@@ -127,7 +114,7 @@ const getFeatureStyle = (name) => {
         }),
         stroke: new ol.style.Stroke({
           color: color,
-          width: 2,
+          width: 2.3,
           lineCap: 'round'
         })
       })
