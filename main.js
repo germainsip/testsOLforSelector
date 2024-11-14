@@ -41,16 +41,16 @@ const roadMapConfig = [
   { gestionn: "DIRAC", pathId: "dir-routes-concedees", label: "Routes concédées", color: "#ddd" }
 ]
 
-
+const franceSource = new ol.source.Vector({
+  format: new ol.format.GeoJSON(),
+  url: './geojson/fr_regions.geojson'
+})
 
 let map = new ol.Map({
   target: 'map-container',
   layers: [
     new ol.layer.Vector({
-      source: new ol.source.Vector({
-        format: new ol.format.GeoJSON(),
-        url: './geojson/fr_regions.geojson'
-      }),
+      source: franceSource,
     style: new ol.style.Style({
       fill: new ol.style.Fill({
         color: 'white'
@@ -92,13 +92,13 @@ let styleTwo = new ol.style.Style({
   })
 })
 
+const sourceRoads = new ol.source.Vector({
+  url: './geojson/RRN_DIR2025.geojson',
+  format: new ol.format.GeoJSON(),
+});
 
 let roads = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    format: new ol.format.GeoJSON(),
-    url: './geojson/RRN_DIR2025.geojson',
-   
-  }),
+  source: sourceRoads,
   style: (feature) => {
     return getFeatureStyle(feature.get("gestionn"));
   }
@@ -170,6 +170,9 @@ map.getTargetElement().addEventListener('pointerleave', function () {
   info.style.visibility = 'hidden';
 });
 
+const regFeatures = fetch('./geojson/fr_regions.geojson')
+.then((response) => response.json())
+
 const loadRegionSelector = () => {
   const regSel = $('#region')
   fetch('./geojson/fr_regions.geojson')
@@ -177,10 +180,36 @@ const loadRegionSelector = () => {
     .then((json) => {
       console.log(json)
       json.features.forEach((el) => {
-        console.log(el.properties.nom)
-      regSel.append(`<option>${el.properties.nom}</option>`)
-
+      regSel.append(`<option value=${el.properties.code} >${el.properties.nom}</option>`)
+      regSel.on('change', () => {
+        goToReg(map,franceSource,$('#region').val())
+      }
+    )
       }) 
     });
 }
+
+
+
 loadRegionSelector()
+
+$('#center').on('click', () => {
+  map.setView(new ol.View({
+    center: ol.proj.fromLonLat([2.0,47.0]),
+    zoom: 5.3,
+  }))
+})
+
+
+
+
+// var features = roads.getSource().getFeatures();
+// var myFirstFeature = features[0];
+
+// var ext=myFirstFeature.getGeometry().getExtent();
+// var center=ol.extent.getCenter(ext);
+// map.setView( new ol.View({
+//     projection: 'EPSG:4326',//or any projection you are using
+//     center: [center[0] , center[1]],//zoom to the center of your feature
+//     zoom: 12 //here you define the levelof zoom
+// }));
