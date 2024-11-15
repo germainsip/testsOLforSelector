@@ -46,15 +46,42 @@ const franceSource = new ol.source.Vector({
   url: './geojson/fr_regions.geojson'
 })
 
+const openMapLayer = new ol.layer.Tile({
+  source: new ol.source.OSM(),
+});
+
+var data_raster_positron = new ol.layer.Tile({
+	source: new ol.source.XYZ({
+		url: 'https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
+		// Mentions légales
+		attributions:['© Contributeur <a href="https://www.openstreetmap.org/copyright" target="_blanc">OpenStreetMap</a>','© <a href="https://carto.com/attribution" target="_blanc">CARTO</a>'],
+	}),
+	// Opacité de la couche (défaut : 1)
+	//opacity: 1,
+	// Visibilité de la couche (défaut : true)
+	//visible: true,
+	// Résolutions minimum (niveau de zoom) incluse d'affichage de la couche en unité de carte par pixel
+	//minResolution:25,
+	// Résolutions maximum (niveau de dézoom) exclue d'affichage de la couche en unité de carte par pixel
+	//maxResolution:500,
+	// Niveau de superposition de la couche (défaut : 0)
+	//zIndex: 0,
+	// Extension LayerSwitcher : Titre de la couche
+	title: 'Positron',
+	// Extension LayerSwitcher : Fond de plan : seul une seule couche de type 'base' est affichée à la fois
+	type: 'base',
+})
+
 let map = new ol.Map({
   target: 'map-container',
   layers: [
+    data_raster_positron,
     new ol.layer.Vector({
       source: franceSource,
     style: new ol.style.Style({
-      fill: new ol.style.Fill({
-        color: 'white'
-      }),
+      // fill: new ol.style.Fill({
+      //   color: 'white'
+      // }),
       stroke: new ol.style.Stroke({
         color: [0,0,139,0.3],
         width: 0.8,
@@ -86,7 +113,7 @@ let styleTwo = new ol.style.Style({
     color: [203,194,185,1]
   }),
   stroke: new ol.style.Stroke({
-    color: '#FBFBFB',
+    // color: '#FBFBFB',
     width: 1,
     lineCap: 'round'
   })
@@ -103,7 +130,6 @@ let roads = new ol.layer.Vector({
     return getFeatureStyle(feature.get("gestionn"));
   }
 })
-
 map.addLayer(roads)
 
 const getFeatureStyle = (name) => {
@@ -203,13 +229,3 @@ $('#center').on('click', () => {
 
 
 
-// var features = roads.getSource().getFeatures();
-// var myFirstFeature = features[0];
-
-// var ext=myFirstFeature.getGeometry().getExtent();
-// var center=ol.extent.getCenter(ext);
-// map.setView( new ol.View({
-//     projection: 'EPSG:4326',//or any projection you are using
-//     center: [center[0] , center[1]],//zoom to the center of your feature
-//     zoom: 12 //here you define the levelof zoom
-// }));
