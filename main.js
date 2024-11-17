@@ -149,10 +149,28 @@ const franceSource = new ol.source.Vector({
   format: new ol.format.GeoJSON(),
   url: "./geojson/fr_regions.geojson",
 });
+const franceSourceDep = new ol.source.Vector({
+  format: new ol.format.GeoJSON(),
+  url: "./geojson/fr_dept.geojson",
+});
 
 const openMapLayer = new ol.layer.Tile({
   source: new ol.source.OSM(),
 });
+
+const franceDeptLayer = new ol.layer.Vector({
+  source: franceSourceDep,
+  style: new ol.style.Style({
+    // fill: new ol.style.Fill({
+    //   color: 'white'
+    // }),
+    stroke: new ol.style.Stroke({
+      color: [0, 0, 139, 0.3],
+      width: 0.8,
+      lineCap: "round",
+    }),
+  }),
+})
 
 var data_raster_positron = new ol.layer.Tile({
   source: new ol.source.XYZ({
@@ -196,6 +214,7 @@ let map = new ol.Map({
         }),
       }),
     }),
+    
   ],
   view: new ol.View({
     center: ol.proj.fromLonLat([2.0, 47.0]),
@@ -340,5 +359,15 @@ $("#zoom").on("click", () => {
       map.removeInteraction(interaction);
       break;
     }
+  }
+});
+
+$("#depts").on("click", () => {
+  if($('#depts').is(":checked"))
+  {
+    map.addLayer(franceDeptLayer)
+  }
+  else {
+    map.removeLayer(franceDeptLayer)
   }
 });
